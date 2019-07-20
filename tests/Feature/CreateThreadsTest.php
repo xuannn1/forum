@@ -20,7 +20,7 @@ class CreateThreadsTest extends TestCase
 
         $this->post('/threads')
             ->assertRedirect('/login');
-        
+
     }
 
     /** @test */
@@ -35,11 +35,11 @@ class CreateThreadsTest extends TestCase
     public function an_authenticated_user_can_create_new_forum_threads()
     {
         $this->signIn();
-        $thread = make('App\Thread');
+        $thread = create('App\Thread');
 
         $this->post('/threads', $thread->toArray());
 
-        $this->get(route('threads.show', $thread->id))
+        $this->get($thread->path())
             ->assertSee($thread->title)
             ->assertSee($thread->body);
     }

@@ -29,7 +29,7 @@
     @if(auth()->check())
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <form action="{{ route('add_reply', $thread->id) }}" method="POST">
+                <form action="{{ $thread->path().'/replies' }}" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <textarea name="body" id="body" class="form-control" placeholder="说点什么..." rows="5">

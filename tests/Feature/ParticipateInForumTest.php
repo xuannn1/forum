@@ -13,9 +13,9 @@ class ParticipateInForumTest extends TestCase
     /** @test */
     function un_authenticated_user_may_not_add_replies()
     {
-        $this->withExceptionHandling();
-
-        $this->post('/threads/1/replies', []);
+        $this->withExceptionHandling()
+            ->post('/threads/some-channel/1/replies', [])
+            ->assertRedirect('/login');
 
     }
 
@@ -26,9 +26,9 @@ class ParticipateInForumTest extends TestCase
         $thread = create('App\Thread');
         $reply = make('App\Reply');
 
-        $this->post('/threads/'.$thread->id.'/replies', $reply->toArray());
+        $this->post($thread->path().'/replies', $reply->toArray());
 
-        $this->get(route('threads.show', $thread->id))
+        $this->get($thread->path())
             ->assertSee($reply->body);
     }
 }
