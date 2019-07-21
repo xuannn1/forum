@@ -21,15 +21,18 @@
         ],
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "files": [
+            "app/helpers.php",
+            "tests/utilities/functions.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
         },
         "files": [
-            "tests/utilities/functions.php",
-            "app/helpers.php"
+            "tests/utilities/functions.php"
         ]
     },
     "scripts": {
