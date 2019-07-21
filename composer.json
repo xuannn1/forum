@@ -28,7 +28,8 @@
             "Tests\\": "tests/"
         },
         "files": [
-            "tests/utilities/functions.php"
+            "tests/utilities/functions.php",
+            "app/helpers.php"
         ]
     },
     "scripts": {
