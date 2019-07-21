@@ -36,19 +36,34 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="/threads">All Threads</a></li>
-
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Channels <span class="caret"></span>
+                                筛选 <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                @foreach(App\Channel::all() as $channel)
+                                <li><a href="/threads">所有帖子</a></li>
+
+                                @if(auth()->check())
+                                    <li><a href="/threads?by={{ auth()->user()->name }}">我的帖子</a></li>
+                                @endif
+                            </ul>
+                        </li>
+
+                        <li><a href="/threads/create">发表新帖</a></li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                频道 <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                @foreach($channels as $channel)
                                     <li><a href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a></li>
                                 @endforeach
                             </ul>
                         </li>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -76,17 +91,6 @@
                                         </form>
                                     </li>
                                 </ul>
-                            </li>
-                            <li>
-                                <a href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
                             </li>
 
                         @endif
