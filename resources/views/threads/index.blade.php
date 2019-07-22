@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            @foreach($threads as $thread)
+            @forelse($threads as $thread)
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="level">
@@ -26,7 +26,9 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <p>没有相关内容</p>
+            @endforelse
         </div>
     </div>
 </div>
