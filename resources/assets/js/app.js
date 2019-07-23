@@ -20,8 +20,8 @@ require('./bootstrap');
 //     el: '#app'
 // });
 
-import Example from './components/Example'
+import Flash from './components/Flash'
 new Vue({
     el: '#app',
-    components: {Example}
+    components: {Flash}
 })

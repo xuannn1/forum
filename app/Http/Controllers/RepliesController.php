@@ -48,7 +48,8 @@ class RepliesController extends Controller
             'user_id' => auth()->id()
         ]);
 
-        return back();
+        return back()
+            ->with('flash', '你已成功回复~');
     }
 
     /**

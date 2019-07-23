@@ -59,7 +59,8 @@ class ThreadsController extends Controller
             'body' => request('body')
         ]);
 
-        return redirect($thread->path());
+        return redirect($thread->path())
+            ->with('flash', '你的帖子已经成功发布~');
     }
 
     /**

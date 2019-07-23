@@ -19,8 +19,6 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.Vue = require('vue');
-
 
 window.axios = require('axios');
 
@@ -54,3 +52,10 @@ if (token) {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+
+window.Vue = require('vue');
+window.events = new(Vue);
+window.flash = function (message) {
+    window.events.$emit('flash', message);
+};
