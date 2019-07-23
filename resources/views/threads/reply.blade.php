@@ -22,4 +22,14 @@
         {{ $reply->body }}
 
     </div>
+
+    @can ('update', $reply)
+        <div class="panel-footer">
+            <form action="/replies/{{ $reply->id }}" method="POST">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <button type="submit" class="btn btn-danger btn-xs">删除</button>
+            </form>
+        </div>
+    @endcan
 </div>
