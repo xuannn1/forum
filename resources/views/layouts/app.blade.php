@@ -24,6 +24,9 @@
         @include('layouts.nav')
 
         @yield('content')
+
+        <example></example>
+        <!-- <flash message="Temporary message"></flash> -->
     </div>
 
     <!-- Scripts -->
