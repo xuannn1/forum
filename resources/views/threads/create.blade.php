@@ -43,11 +43,11 @@
                                 <li>{{ $error }}</li>
                             @endforeach
                         </ul>
-                        @else
+                        @endif
+
                     </form>
 
 
-                    @endif
                 </div>
             </div>
         </div>
