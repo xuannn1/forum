@@ -7,7 +7,6 @@
 
 require('./bootstrap');
 
-
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -20,8 +19,9 @@ require('./bootstrap');
 //     el: '#app'
 // });
 
-import Flash from './components/Flash'
-new Vue({
-    el: '#app',
-    components: {Flash}
-})
+Vue.component('flash', require('./components/Flash.vue').default);
+Vue.component('reply', require('./components/Reply.vue').default);
+
+const app = new Vue({
+   el: '#app'
+});
