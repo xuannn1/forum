@@ -31,7 +31,7 @@
                             <li><a href="/threads?by={{ auth()->user()->name }}">我的帖子</a></li>
                         @endif
 
-                        <li><a href="/threads?popular=1">最热帖子</a></li>
+                        <li><a href="/threads?unanswered=1">零回复帖子</a></li>
                     </ul>
                 </li>
 
