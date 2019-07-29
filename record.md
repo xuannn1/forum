@@ -21,8 +21,8 @@
 
 #### Favorite
 
-## 用户行为
-
+#### ThreadSubscription
+- 记录话题订阅信息，记录用户id与thread_id，并且与threads表的thread_id建立外键约束，当thread删除时，订阅表里的记录也会随之删除
 
 ## 组件
 - Flash：创建一个提示信息，并在三秒后消失
@@ -57,3 +57,8 @@ window.App.signedIn //获取用户是否登录信息
 ## 模型使用
 - 在boot方法中监听事件
 - 用increment给某个数据+1,decrement -1
+
+## 功能
+# 话题订阅
+(1)在Unit测试的ThreadTest中，建立两个测试，一个thread可以被订阅/取消订阅，完成基本逻辑
+(2)在Feature测试中建立SubscribeToThreadsTest测试。这里针对的是用户的动作，当用户点击相应endpoint，可以完成
