@@ -15,7 +15,7 @@
                           <label for="channel_id">频道：</label>
                           <select class="form-control" name="channel_id" id="channel_id" required>
                               <option value="">请选择一个~</option>
-                              @foreach($channels as $channel)
+                              @foreach(\App\Channel::all() as $channel)
                                   <option value="{{ $channel->id }}" {{ old('channel_id') == $channel->id ? 'selected':'' }}>
                                       {{ $channel->name }}
                                   </option>

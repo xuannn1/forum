@@ -32,7 +32,7 @@
             </form>
 
 
-            @foreach($channels as $channel)
+            @foreach(\App\Channel::all() as $channel)
                 <div class="page-header">
                     <div class="level">
                         <span class="flex">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
             @endforeach
-            
+
         </div>
 
     </div>
