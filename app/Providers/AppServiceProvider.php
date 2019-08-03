@@ -24,6 +24,9 @@ class AppServiceProvider extends ServiceProvider
         // });
 
         \Validator::extend('spamfree', 'App\Rules\SpamFree@passes');
+        if (env('IS_HTTPS')) {
+            \URL::forceScheme('https');
+        }
     }
 
     /**
