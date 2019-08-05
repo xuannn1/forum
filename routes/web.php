@@ -46,3 +46,5 @@ Route::delete('/profiles/{user}/notifications/{notification}', "UserNotification
 
 Route::get('/channels', "ChannelsController@index");
 Route::post('/channels', "ChannelsController@store");
+
+Route::get('api/users', 'Api\UsersController@index');

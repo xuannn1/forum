@@ -22,11 +22,8 @@ class NotifyMentionedUsers
         // 并且将每一个值都传给回调函数，通过用户名来获取对应的用户实例
         // 如果对应的用户实例不存在，则会被 filter 过滤掉
         // 然后通知每一个用户
-        collect($event->reply->mentionedUsers())
-            ->map(function ($name) {
-                return User::whereName($name)->first();
-            })
-            ->filter()
+        User::whereIn('name', $event->reply->mentionedUsers())
+            ->get()
             ->each(function ($user) use ($event){
                 $user->notify(new YouWereMentioned($event->reply));
             });
