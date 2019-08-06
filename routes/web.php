@@ -48,3 +48,4 @@ Route::get('/channels', "ChannelsController@index");
 Route::post('/channels', "ChannelsController@store");
 
 Route::get('api/users', 'Api\UsersController@index');
+Route::post('api/users/{user}/avatar', 'Api\UserAvatarController@store')->middleware('auth')->name('avatar');

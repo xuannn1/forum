@@ -12,6 +12,10 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="level" >
+                            @if ($thread->creator->avatar_path)
+                                <img src="{{ $thread->creator->avatar_path }}" alt="{{ $thread->creator->name }}" width="25" height="25" class="mr-1">
+                            @endif
+
                             <span class="flex">
                                 <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> 发表了：
                                 {{ $thread->title }}
