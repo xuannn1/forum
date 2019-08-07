@@ -7,6 +7,7 @@ use App\Channel;
 use Illuminate\Http\Request;
 use App\Filters\ThreadsFilters;
 use Carbon\Carbon;
+use App\Trending;
 
 class ThreadsController extends Controller
 {
@@ -20,14 +21,18 @@ class ThreadsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Channel $channel, ThreadsFilters $filters)
+    public function index(Channel $channel, ThreadsFilters $filters, Trending $trending)
     {
         $threads = $this->getThreads($filters, $channel);
 
         if(request()->wantsJson()) {
             return $threads;
         }
-        return view('threads.index', compact('threads'));
+
+        return view('threads.index', [
+            'threads' => $threads,
+            'trending' => $trending->get()
+        ]);
     }
 
     /**
@@ -72,11 +77,15 @@ class ThreadsController extends Controller
      * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function show($channel, Thread $thread)
+    public function show($channel, Thread $thread, Trending $trending)
     {
         if (auth()->check()) {
             auth()->user()->read($thread);
         }
+
+        $trending->push($thread);
+
+        $thread->recordVisit();
 
         return view('threads.show', compact('thread'));
     }

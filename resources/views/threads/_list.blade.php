@@ -33,6 +33,10 @@
                 {{ $thread->body }}
             </div>
         </div>
+
+        <div class="panel-footer">
+            {{ $thread->visits() }} 访问数
+        </div>
     </div>
 @empty
     <p>没有相关内容</p>
