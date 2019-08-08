@@ -27,6 +27,10 @@ class User extends Authenticatable
         'password', 'remember_token', 'email'
     ];
 
+    protected $casts = [
+        'confirmed' => 'boolean'
+    ];
+
     public function getRouteKeyName()
     {
         return 'name';
@@ -65,5 +69,12 @@ class User extends Authenticatable
     {
         $path = $avatar ?: 'avatars/default.jpg';
         return '/storage/' . $path;
+    }
+
+    public function confirm()
+    {
+        $this->confirmed = true;
+
+        $this->save();
     }
 }
