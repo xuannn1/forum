@@ -5,6 +5,8 @@ namespace Tests;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use App\Exceptions\Handler;
+use Illuminate\Support\Facades\DB;
+
 
 abstract class TestCase extends BaseTestCase
 {
@@ -13,6 +15,8 @@ abstract class TestCase extends BaseTestCase
     protected function setUp()
     {
         parent::setUp();
+
+        DB::statement('PRAGMA foreign_keys=on');
 
         $this->disableExceptionHandling();
     }

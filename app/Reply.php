@@ -11,7 +11,7 @@ class Reply extends Model
 
     protected $guarded = [];
     protected $with = ['owner', 'favorites'];
-    protected $appends = ['favoritesCount', 'isFavorited'];
+    protected $appends = ['favoritesCount', 'isFavorited', 'isBest'];
 
     protected static function boot()
     {
@@ -57,4 +57,15 @@ class Reply extends Model
     {
         $this->attributes['body'] = preg_replace('/@([\w\-]+)/', '<a href="/profiles/$1">$0</a>', $body);
     }
+
+    public function isBest()
+    {
+        return ($this->id == $this->thread->best_reply_id);
+    }
+
+    public function getIsBestAttribute()
+    {
+        return $this->isBest();
+    }
+
 }
