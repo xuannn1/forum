@@ -6,7 +6,9 @@
 
         <paginator :dataSet="dataSet" @changed="fetch"></paginator>
 
-        <new-reply @created="add"></new-reply>
+        <p v-if="$parent.locked">该话题已被锁定，无法回复</p>
+
+        <new-reply @created="add" v-else></new-reply>
     </div>
 </template>
 
