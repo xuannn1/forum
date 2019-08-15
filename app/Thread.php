@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Notifications\ThreadWasUpdated;
 use App\Events\ThreadHasNewReply;
 use App\Events\ThreadReceivedNewReply;
+use Laravel\Scout\Searchable;
 
 class Thread extends Model
 {
-    use RecordsActivity;
+    use RecordsActivity, Searchable;
 
     protected $guarded = [];
     protected $with = ['creator', 'channel'];
