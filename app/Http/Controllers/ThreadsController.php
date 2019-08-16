@@ -7,7 +7,6 @@ use App\Channel;
 use Illuminate\Http\Request;
 use App\Filters\ThreadsFilters;
 use Carbon\Carbon;
-use App\Trending;
 
 class ThreadsController extends Controller
 {
@@ -21,7 +20,7 @@ class ThreadsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Channel $channel, ThreadsFilters $filters, Trending $trending)
+    public function index(Channel $channel, ThreadsFilters $filters)
     {
         $threads = $this->getThreads($filters, $channel);
 
@@ -31,7 +30,6 @@ class ThreadsController extends Controller
 
         return view('threads.index', [
             'threads' => $threads,
-            'trending' => $trending->get()
         ]);
     }
 
@@ -81,13 +79,12 @@ class ThreadsController extends Controller
      * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function show($channel, Thread $thread, Trending $trending)
+    public function show($channel, Thread $thread)
     {
         if (auth()->check()) {
             auth()->user()->read($thread);
         }
 
-        $trending->push($thread);
 
         $thread->increment('visits');
 
