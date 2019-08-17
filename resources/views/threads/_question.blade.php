@@ -3,8 +3,6 @@
     <div class="panel-heading">
         <div class="level">
             <input type="text" class="form-control" v-model="form.title">
-
-
         </div>
     </div>
 
@@ -17,7 +15,7 @@
     <div class="panel-footer">
         <div class="level">
             <button class="btn btn-xs level-item" @click="editing = true" v-show="! editing">编辑</button>
-            <button class="btn btn-success btn-xs level-item" @click="update">更新</button>
+            <button class="btn btn-success btn-xs level-item" @click="update">发布</button>
             <button class="btn btn-xs level-item" @click="resetForm">取消</button>
 
             @can('update', $thread)

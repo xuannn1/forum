@@ -31,10 +31,12 @@
                         <p>
                             <subscribe-button :active="{{ json_encode($thread->isSubscribeTo) }}" v-if="signedIn"></subscribe-button>
 
-                            <button class="btn btn-default"
+                            <!-- <span class="glyphicon glyphicon-lock"></span> -->
+                            <button
+                                v-bind:class="locked ? 'btn btn-primary' : 'btn btn-default'"
                                 v-if="authorize('isAdmin')"
                                 @click="toggleLock"
-                                v-text="locked ? '解除锁定' : '锁定'">
+                                v-text="locked ? '解除锁定' : '锁定该话题'">
                             </button>
                         </p>
                     </div>

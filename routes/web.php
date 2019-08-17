@@ -11,13 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', 'ThreadsController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::view('scan', 'scan');
 
 // Route::resource('threads', 'ThreadsController');
 Route::get('/threads', "ThreadsController@index")->name('threads');
@@ -53,8 +56,10 @@ Route::delete('/profiles/{user}/notifications/{notification}', 'UserNotification
 
 Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index')->name('register.confirm');
 
-Route::get('/channels', 'ChannelsController@index');
-Route::post('/channels', 'ChannelsController@store');
+Route::get('/channels', 'ChannelsController@index')->middleware('admin');
+Route::post('/channels', 'ChannelsController@store')->middleware('admin');
+Route::delete('/channels/{channel}', 'ChannelsController@destroy')->middleware('admin');
+Route::patch('/channels/{channel}', 'ChannelsController@update')->middleware('admin');
 
 Route::get('api/users', 'Api\UsersController@index');
 Route::post('api/users/{user}/avatar', 'Api\UserAvatarController@store')->middleware('auth')->name('avatar');

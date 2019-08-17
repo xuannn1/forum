@@ -21,7 +21,8 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        筛选 <span class="caret"></span>
+                        筛选
+                        <span class="caret"></span>
                     </a>
 
                     <ul class="dropdown-menu" role="menu">
@@ -35,11 +36,18 @@
                     </ul>
                 </li>
 
-                <li><a href="/threads/create">发表新帖</a></li>
+                <li>
+                    <a href="/threads/create">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        发表新帖
+                    </a>
+                </li>
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        频道 <span class="caret"></span>
+                        <span class="glyphicon glyphicon-tag"></span>
+                        频道
+                        <span class="caret"></span>
                     </a>
 
                     <ul class="dropdown-menu" role="menu">
@@ -59,26 +67,24 @@
                     <li><a href="{{ route('register') }}">注册</a></li>
                 @else
                     <user-notifications></user-notifications>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->name }} <span class="caret"></span>
+
+                    <li>
+                        <a href="{{ route('profile', Auth::user()) }}">
+                            <span class="glyphicon glyphicon-home"></span>
+                             {{ Auth::user()->name }}
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                            退出登录
                         </a>
 
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ route('profile', Auth::user()) }}">个人主页</a></li>
-
-                            <li>
-                                <a href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                    退出登录
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
-                        </ul>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
                     </li>
 
                 @endif

@@ -14,7 +14,7 @@
 
             <button type="submit"
                 class="btn btn-default"
-                @click="addReply">提交
+                @click="addReply">发布
             </button>
         </div>
 

@@ -18,7 +18,7 @@ class SearchController extends Controller
         }
 
         return view('threads.index', [
-            'threads' => $threads,
+            'threads' => $threads
         ]);
     }
 }

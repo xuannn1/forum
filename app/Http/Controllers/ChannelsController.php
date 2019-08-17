@@ -22,4 +22,19 @@ class ChannelsController extends Controller
         ]);
         return back();
     }
+
+    public function destroy(Channel $channel)
+    {
+        $channel->delete();
+        return back();
+    }
+
+    public function update(Channel $channel)
+    {
+        $channel->update([
+            'name' => request()->name,
+            'slug' => request()->slug
+        ]);
+        return back();
+    }
 }

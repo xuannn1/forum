@@ -1,5 +1,8 @@
 <template>
-    <button :class="classes" @click="subscribe">订阅</button>
+    <button :class="classes" @click="subscribe">
+        <span class="glyphicon glyphicon-star-empty"></span>
+        订阅
+    </button>
 </template>
 
 <script>

@@ -23,7 +23,7 @@
                         <textarea class="form-control" v-model="body" required></textarea>
                     </div>
 
-                    <button class="btn btn-xs btn-success mr-1">提交</button>
+                    <button class="btn btn-xs btn-success mr-1">发布</button>
                     <button class="btn btn-xs" @click="editing = false" type="button">取消</button>
                 </form>
             </div>
@@ -38,7 +38,11 @@
                 <button class="btn btn-xs btn-danger mr-1" @click="destroy">删除</button>
             </div>
 
-            <button class="btn btn-xs btn-default ml-a" @click="markBestReply" v-if="authorize('owns', reply.thread)">最佳回复</button>
+            <button class="btn btn-xs btn-default ml-a"
+                @click="markBestReply"
+                v-if="authorize('owns', reply.thread)">
+                    最佳回复
+            </button>
         </div>
     </div>
 
@@ -89,6 +93,7 @@
             },
 
             destroy() {
+                window.confirm("你确定要删除该回复？");
                 axios.delete('/replies/' + this.id);
 
                 this.$emit('deleted', this.id);
