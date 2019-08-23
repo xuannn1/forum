@@ -30,7 +30,8 @@
 
                         <div class="form-group">
                           <label for="body">内容：</label>
-                          <textarea name="body" id="body" class="form-control" rows="8" required>{{ old('body') }}</textarea>
+                          <wysiwyg name="body"></wysiwyg>
+                          <!-- <textarea name="body" id="body" class="form-control" rows="8" required>{{ old('body') }}</textarea> -->
                         </div>
 
                         <div class="form-group">

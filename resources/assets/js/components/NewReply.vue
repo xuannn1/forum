@@ -2,14 +2,15 @@
     <div>
         <div v-if="signedIn">
             <div class="form-group">
-                <textarea name="body"
+                <wysiwyg name="body" v-model="body" placeholder="说点什么..." :shouldClear="completed"></wysiwyg>
+                <!-- <textarea name="body"
                     id="body"
                     class="form-control"
                     placeholder="说点什么..."
                     rows="5"
                     required
                     v-model="body">
-                </textarea>
+                </textarea> -->
             </div>
 
             <button type="submit"
@@ -33,6 +34,7 @@
         data() {
             return {
                 body: '',
+                completed: false
             }
         },
 
@@ -58,6 +60,7 @@
                     })
                     .then(({data}) => {
                         this.body = '';
+                        this.completed = true;
 
                         flash('你的回复已成功发表！');
 
