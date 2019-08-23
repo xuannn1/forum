@@ -138,6 +138,12 @@ class ThreadTest extends TestCase
         });
     }
 
+    /** @test */
+    function a_threads_body_is_sanitized_automatically()
+    {
+        $thread = make('App\Thread', ['body' => '<script>alert("bad")</script><p>this is okay.</p>']);
 
+        $this->assertEquals("<p>this is okay.</p>", $thread->body);
+    }
 
 }
