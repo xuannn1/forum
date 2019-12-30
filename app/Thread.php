@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Notifications\ThreadWasUpdated;
 use App\Events\ThreadHasNewReply;
 use App\Events\ThreadReceivedNewReply;
-use Laravel\Scout\Searchable;
+// use Laravel\Scout\Searchable;
 
 class Thread extends Model
 {
-    use RecordsActivity, Searchable;
+    use RecordsActivity;
 
     protected $guarded = [];
     protected $with = ['creator', 'channel'];
@@ -23,14 +23,13 @@ class Thread extends Model
     {
         parent::boot();
 
-        static::deleting(function($thread) {
+        static::deleting(function ($thread) {
             $thread->replies->each->delete();
         });
 
-        static::created(function($thread) {
+        static::created(function ($thread) {
             $thread->update(['slug' => $thread->title]);
         });
-
     }
 
     public function path()

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Thread;
 use App\Channel;
+use App\User;
 use Illuminate\Http\Request;
 use App\Filters\ThreadsFilters;
 use Carbon\Carbon;
@@ -24,7 +25,7 @@ class ThreadsController extends Controller
     {
         $threads = $this->getThreads($filters, $channel);
 
-        if(request()->wantsJson()) {
+        if (request()->wantsJson()) {
             return $threads;
         }
 
@@ -82,7 +83,7 @@ class ThreadsController extends Controller
     public function show($channel, Thread $thread)
     {
         if (auth()->check()) {
-            auth()->user()->read($thread);
+            // auth()->user()->read($thread);
         }
 
 
@@ -135,22 +136,22 @@ class ThreadsController extends Controller
         // }
         $thread->delete();
 
-        if(request()->wantsJson()) {
+        if (request()->wantsJson()) {
             return response([], 204);
         }
 
         return redirect('/threads');
     }
     /**
-    * [getThreads description]
-    * @param [type] $filters [description]
-    * @param [type] $channel [description]
-    */
+     * [getThreads description]
+     * @param [type] $filters [description]
+     * @param [type] $channel [description]
+     */
     protected function getThreads($filters, $channel)
     {
         $threads = Thread::latest()->filter($filters);
 
-        if($channel->exists) {
+        if ($channel->exists) {
             $threads->where('channel_id', $channel->id);
         }
 

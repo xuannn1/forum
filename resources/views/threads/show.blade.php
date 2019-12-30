@@ -9,7 +9,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8" v-cloak>
-                @include('threads._question')
+                
+                <thread-question :thread="{{ $thread }}"></thread-question>
 
                 <replies @added="repliesCount++" @removed="repliesCount--">
                 </replies>

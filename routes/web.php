@@ -21,6 +21,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::view('scan', 'scan');
+Route::view('test', 'test');
 
 // Route::resource('threads', 'ThreadsController');
 Route::get('/threads', "ThreadsController@index")->name('threads');
