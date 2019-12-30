@@ -25,7 +25,7 @@ Route::view('test', 'test');
 
 // Route::resource('threads', 'ThreadsController');
 Route::get('/threads', "ThreadsController@index")->name('threads');
-Route::get('/threads/create', "ThreadsController@create");
+Route::get('/threads/create', "ThreadsController@create")->middleware('must-be-confirmed');
 Route::get('/threads/search', "SearchController@show");
 Route::get('/threads/{channel}/{thread}', "ThreadsController@show");
 Route::patch('/threads/{channel}/{thread}', "ThreadsController@update");
@@ -48,8 +48,10 @@ Route::delete('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsC
 Route::get('/threads/{channel}', 'ThreadsController@index');
 
 Route::post('/replies/{reply}/favorites', 'FavoritesController@store');
-Route::delete('/replies/{reply}/favorites',
-'FavoritesController@destroy');
+Route::delete(
+  '/replies/{reply}/favorites',
+  'FavoritesController@destroy'
+);
 
 Route::get('/profiles/{user}', 'ProfilesController@show')->name('profile');
 Route::get('/profiles/{user}/notifications', 'UserNotificationsController@index');
